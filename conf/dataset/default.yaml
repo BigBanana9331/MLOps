@@ -1,0 +1,3 @@
+path: /content/drive/MyDrive/FMdataset/data/
+train_ratio: 0.8
+test_ratio: 0.5

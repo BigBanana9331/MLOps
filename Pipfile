@@ -4,7 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-dvc = "*"
+dvc = {extras = ["gdrive"], version = "*"}
+hydra-core = "*"
+hydra-colorlog = "*"
 
 [dev-packages]
 
