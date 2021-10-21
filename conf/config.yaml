@@ -1,8 +1,8 @@
 defaults:
-  - override hydra/job_logging: colorlog
-  - override hydra/hydra_logging: colorlog
   - model: default
   - dataset: default
+  # - override hydra/job_logging: colorlog
+  # - override hydra/hydra_logging: colorlog
 
 
 

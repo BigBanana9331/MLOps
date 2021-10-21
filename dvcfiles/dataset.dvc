@@ -1,0 +1,6 @@
+wdir: ..
+outs:
+- md5: faf492bca1e3e2be00afc1a70d4a5a75.dir
+  size: 174701635
+  nfiles: 7553
+  path: dataset

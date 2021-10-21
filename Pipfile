@@ -7,6 +7,9 @@ name = "pypi"
 dvc = {extras = ["gdrive"], version = "*"}
 hydra-core = "*"
 hydra-colorlog = "*"
+tensorflow = "*"
+tflite-model-maker = "*"
+matplotlib = "*"
 
 [dev-packages]
 
