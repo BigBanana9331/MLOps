@@ -1,0 +1,8 @@
+D:/MLOps/dataset/
+[2021-10-23 01:05:41,555][tensorflow][INFO] - Load image with size: 7553, num_label: 2, labels: with_mask, without_mask.
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "D:\MLOps\FMClassifier\train.py", line 42, in main
+    model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data,epochs=cfg.model.epochs,callbacks=[WandbCallback()])
+TypeError: create() got an unexpected keyword argument 'callbacks'
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

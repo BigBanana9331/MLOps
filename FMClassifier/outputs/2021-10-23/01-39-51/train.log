@@ -1,0 +1,7 @@
+[2021-10-23 01:39:51,980][tensorflow][INFO] - Load image with size: 7553, num_label: 2, labels: with_mask, without_mask.
+[2021-10-23 01:39:51,982][tensorflow][INFO] - Retraining the models...
+[2021-10-23 01:39:51,985][absl][INFO] - Using C:\Users\phant\AppData\Local\Temp\tfhub_modules to cache modules.
+[2021-10-23 01:42:03,028][tensorflow][INFO] - Assets written to: C:\Users\phant\AppData\Local\Temp\tmps0pt22h6\assets
+[2021-10-23 01:42:05,282][tensorflow][INFO] - Label file is inside the TFLite model with metadata.
+[2021-10-23 01:42:05,285][tensorflow][INFO] - Saving labels in C:\Users\phant\AppData\Local\Temp\tmpqbnk79nc\labels.txt
+[2021-10-23 01:42:05,603][tensorflow][INFO] - TensorFlow Lite model exported successfully: D:\MLOps\models\mobilenet_v2_2021-10-23.tflite

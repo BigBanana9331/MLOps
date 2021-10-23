@@ -1,5 +1,0 @@
-wdir: ../model
-outs:
-- md5: 3c17df50f755653e2bb1ee02ede1f94b
-  size: 4569696
-  path: model_fp16_v2.tflite

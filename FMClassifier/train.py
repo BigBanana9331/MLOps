@@ -18,16 +18,16 @@ from tflite_model_maker.image_classifier import DataLoader
 import matplotlib.pyplot as plt
 import hydra
 
-tf.compat.v1.disable_eager_execution()
+wandb.init(project='MLOps', entity='nguyenhuy39')
 
 @hydra.main(config_path="../conf", config_name="config")
 
-wandb.init(project="my-test-project", entity="nguyenhuy39")
+# wandb.init(project='MLOps', entity='nguyenhuy39',config={
+#   "model_spec": cfg.model.model_spec,
+#   "epochs": cfg.model.epochs,
+# })
 
-wandb.config = {
-  "model_spec": 'mobilenet_v2',
-  "epochs": 10,
-}
+
 
 def main(cfg):
     # prepare data
@@ -38,17 +38,20 @@ def main(cfg):
     # create model
     # model = ImageClassifier(model_spec=cfg.model.name).create_model()
     # model.train(train_data = train_data,validation_data=validation_data)
-    with tf.compat.v1.Session() as sess:
-        model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data,epochs=cfg.model.epochs,do_train=False)
-        model.train()
-        wandb.tensorflow.log(tf.summary.merge_all())
-    # evaluate model
-    model.summary()
+    # with tf.compat.v1.Session() as sess:
+    model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data)
+    # model.summary()
     loss, accuracy = model.evaluate(test_data)
-
-
+        # wandb.tensorflow.log(tf.summary.merge_all())
+    # evaluate model
+    # print(loss)
+    # print(accuracy)
+    wandb.log({"loss": loss})
+    wandb.log({"accuracy": accuracy})
     # export model
     config = QuantizationConfig.for_float16()
-    model.export(export_dir='D:\MLOps\models',tflite_filename='model_fp16_{day}.tflite'.format(day = datetime.date.today()), quantization_config=config)
+    model.export(export_dir='D:\MLOps\models',tflite_filename='{model}_{day}.tflite'.format(day = datetime.date.today(),model=cfg.model.name), quantization_config=config)
+    model.evaluate_tflite('D:\MLOps\models\{model}_{day}.tflite'.format(day = datetime.date.today(),model=cfg.model.name), test_data)
+
 if __name__ == '__main__':
     main()

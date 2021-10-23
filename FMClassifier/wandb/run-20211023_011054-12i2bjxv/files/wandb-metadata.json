@@ -1,0 +1,24 @@
+{
+    "os": "Windows-10-10.0.22000-SP0",
+    "python": "3.9.7",
+    "heartbeatAt": "2021-10-22T18:10:58.497907",
+    "startedAt": "2021-10-22T18:10:54.045886",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1050 Ti",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "D:\\MLOps\\FMClassifier\\train.py",
+    "codePath": "FMClassifier\\train.py",
+    "git": {
+        "remote": "https://github.com/BigBanana9331/MLOps.git",
+        "commit": "2763de71f4fb1313fa0669a88477a95133b98909"
+    },
+    "email": "phantom39z1@gmail.com",
+    "root": "D:/MLOps",
+    "host": "Banana",
+    "username": "phant",
+    "executable": "C:\\Users\\phant\\.virtualenvs\\MLOps-he8T28m9\\Scripts\\python.exe"
+}
