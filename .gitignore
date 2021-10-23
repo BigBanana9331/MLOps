@@ -2,3 +2,4 @@
 /FMClassifier/outputs
 /FMClassifier/wandb
 Pipfile.lock
+/models

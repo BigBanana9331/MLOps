@@ -1,0 +1,6 @@
+wdir: ..
+outs:
+- md5: 717707afa1b05dbd0888351d8e0ee4c9.dir
+  size: 58613748
+  nfiles: 3
+  path: models

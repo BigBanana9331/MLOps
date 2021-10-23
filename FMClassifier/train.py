@@ -18,16 +18,12 @@ from tflite_model_maker.image_classifier import DataLoader
 import matplotlib.pyplot as plt
 import hydra
 
-wandb.init(project='MLOps', entity='nguyenhuy39')
+wandb.init(project='FMClassifier', entity='nguyenhuy39',config={
+    "model_spec":"resnet_50",
+    "epochs":25
+})
 
 @hydra.main(config_path="../conf", config_name="config")
-
-# wandb.init(project='MLOps', entity='nguyenhuy39',config={
-#   "model_spec": cfg.model.model_spec,
-#   "epochs": cfg.model.epochs,
-# })
-
-
 
 def main(cfg):
     # prepare data
@@ -39,7 +35,7 @@ def main(cfg):
     # model = ImageClassifier(model_spec=cfg.model.name).create_model()
     # model.train(train_data = train_data,validation_data=validation_data)
     # with tf.compat.v1.Session() as sess:
-    model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data)
+    model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data, epochs = cfg.model.epochs)
     # model.summary()
     loss, accuracy = model.evaluate(test_data)
         # wandb.tensorflow.log(tf.summary.merge_all())
@@ -51,7 +47,8 @@ def main(cfg):
     # export model
     config = QuantizationConfig.for_float16()
     model.export(export_dir='D:\MLOps\models',tflite_filename='{model}_{day}.tflite'.format(day = datetime.date.today(),model=cfg.model.name), quantization_config=config)
-    model.evaluate_tflite('D:\MLOps\models\{model}_{day}.tflite'.format(day = datetime.date.today(),model=cfg.model.name), test_data)
+    accuracy_tflite = model.evaluate_tflite('D:\MLOps\models\{model}_{day}.tflite'.format(day = datetime.date.today(),model=cfg.model.name), test_data)
+    wandb.log({"accuracy_tflite": accuracy_tflite})
 
 if __name__ == '__main__':
     main()

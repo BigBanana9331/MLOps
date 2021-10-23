@@ -1,2 +1,2 @@
-name: mobilenet_v2
-epochs: 10
+name: resnet_50 #mobilenet_v2, efficientnet_lite0, resnet_50
+epochs: 25
