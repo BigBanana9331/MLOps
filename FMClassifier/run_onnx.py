@@ -60,8 +60,10 @@ def main(image, label_file, model_file):
     arr = results[0][0]
     if (arr[0] > arr[1]):
         print(labels[0])
+        print(arr[0])
     else: 
         print(labels[1])
+        print(arr[1])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -93,7 +95,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     main(args.image, args.label_file, args.model_file)
-    
 
 
 

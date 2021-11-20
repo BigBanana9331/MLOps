@@ -11,24 +11,9 @@ logger.addHandler(watchtower.CloudWatchLogHandler())
 
 @app.get("/")
 async def home_page():
-    outputs = {
-        "loss": 0.3,
-        "acc": 0.3,
-        "precision_macro": 0.3,
-        "recall_macro": 0.3,
-        "precision_micro": 0.3,
-        "recall_micro": 0.3,
-        "f1": 0.3,
-    }
-    
     # Logging metrics
-    logger.info(dict(loss=outputs["loss"], details={"type": "prediction"}))
-    logger.info(dict(acc=outputs["acc"], details={"type": "prediction"}))
-    logger.info(dict(precision_macro=outputs["precision_macro"], details={"type": "prediction"}))
-    logger.info(dict(recall_macro=outputs["recall_macro"], details={"type": "prediction"}))
-    logger.info(dict(precision_micro=outputs["precision_micro"], details={"type": "prediction"}))
-    logger.info(dict(recall_micro=outputs["recall_micro"], details={"type": "prediction"}))
-    logger.info(dict(f1=outputs["f1"], details={"type": "prediction"}))
+    logger.info(dict(prediction=dict(label=True, prediction=0.9)))
+    logger.info(dict(prediction=dict(label=False, prediction=0.2)))
 
     return "<h2>Sample prediction API</h2>"
 
