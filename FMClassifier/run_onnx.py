@@ -88,8 +88,10 @@ if __name__ == '__main__':
     arr = results[0][0]
     if (arr[0]>arr[1]):
         print(labels[0])
+        print(arr[0])
     else: 
         print(labels[1])
+        print(arr[1])
     # result = reversed(results[0].argsort()[-5:])
     # for r in result:
     #     print(r, labels[str(r)], results[0][r])
