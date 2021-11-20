@@ -38,6 +38,8 @@ def main(cfg):
     model = image_classifier.create(train_data, model_spec=model_spec.get(cfg.model.name), validation_data=validation_data, epochs = cfg.model.epochs)
     # model.summary()
     loss, accuracy = model.evaluate(test_data)
+    print(loss)
+    print(accuracy)
         # wandb.tensorflow.log(tf.summary.merge_all())
     # evaluate model
     # print(loss)
