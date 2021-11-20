@@ -41,7 +41,7 @@ def load_labels(filename):
   with open(filename, 'r') as f:
     return [line.strip() for line in f.readlines()]
 
-def main(image, label_file, model_file):
+def predict(image, label_file, model_file):
     img = cv2.imread(image)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -58,42 +58,41 @@ def main(image, label_file, model_file):
     results = sess.run(["Identity"], {"input_1": img_batch})
     arr = results[0][0]
     if (arr[0] > arr[1]):
-        print(labels[0])
-        print(arr[0])
+        return labels[0],arr[0]
     else: 
-        print(labels[1])
-        print(arr[1])
+        return labels[1],arr[1]
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-i',
-        '--image',
-        default='/tmp/grace_hopper.bmp',
-        help='image to be classified')
-    parser.add_argument(
-        '-m',
-        '--model_file',
-        default='/tmp/mobilenet_v1_1.0_224_quant.tflite',
-        help='.tflite model to be executed')
-    parser.add_argument(
-        '-l',
-        '--label_file',
-        default='/tmp/labels.txt',
-        help='name of file containing labels')
-    parser.add_argument(
-        '--input_mean',
-        default=127.5, type=float,
-        help='input_mean')
-    parser.add_argument(
-        '--input_std',
-        default=127.5, type=float,
-        help='input standard deviation')
-    parser.add_argument(
-        '--num_threads', default=None, type=int, help='number of threads')
-    args = parser.parse_args()
+
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument(
+#         '-i',
+#         '--image',
+#         default='D:\MLOps\FMClassifier\test\test1.jpg',
+#         help='image to be classified')
+#     parser.add_argument(
+#         '-m',
+#         '--model_file',
+#         default='/tmp/mobilenet_v1_1.0_224_quant.tflite',
+#         help='.tflite model to be executed')
+#     parser.add_argument(
+#         '-l',
+#         '--label_file',
+#         default='D:\MLOps\FMClassifier\labels.names',
+#         help='name of file containing labels')
+#     parser.add_argument(
+#         '--input_mean',
+#         default=127.5, type=float,
+#         help='input_mean')
+#     parser.add_argument(
+#         '--input_std',
+#         default=127.5, type=float,
+#         help='input standard deviation')
+#     parser.add_argument(
+#         '--num_threads', default=None, type=int, help='number of threads')
+#     args = parser.parse_args()
     
-    main(args.image, args.label_file, args.model_file)
+    # main(args.image, args.label_file, args.model_file)
 
 
 

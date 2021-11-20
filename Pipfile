@@ -15,6 +15,7 @@ tensorflow-gpu = "*"
 wandb = "*"
 tf2onnx = {git = "https://github.com/onnx/tensorflow-onnx"}
 onnxruntime = "*"
+watchtower = "*"
 
 [dev-packages]
 
