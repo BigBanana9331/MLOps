@@ -49,6 +49,17 @@ Navigate to FMClassifier folder and run command
 ```bash
 python train.py
 ```
+Convert tflite to onnx
+
+```bash
+python -m tf2onnx.convert --tflite ..\models\efficientnet_lite0_2021-10-23.tflite --output ..\models\efficientnet_lite0_2021-10-23.onnx --opset 13 --dequantize
+```
+
+Run inference
+
+```bash
+py .\run_onnx.py -i .\test\test2.jpg -l .\labels.names -m ..\models\efficientnet_lite0_2021-10-23.onnx
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
