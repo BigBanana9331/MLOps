@@ -42,14 +42,15 @@ def load_labels(filename):
     return [line.strip() for line in f.readlines()]
 
 def predict(image, label_file, model_file):
+    print(image)
     img = cv2.imread(image)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # pre-process the image like mobilenet and resize it to 300x300
     img = pre_process_edgetpu(img, (224, 224, 3))
-    plt.axis('off')
-    plt.imshow(img)
-    plt.show()
+    # plt.axis('off')
+    # plt.imshow(img)
+    # plt.show()
     img_batch = np.expand_dims(img, axis=0)
     labels = load_labels(label_file)
 
@@ -92,9 +93,10 @@ def predict(image, label_file, model_file):
 #         '--num_threads', default=None, type=int, help='number of threads')
 #     args = parser.parse_args()
     
-    # main(args.image, args.label_file, args.model_file)
+label, acc = predict(image='D:/MLOps/FMClassifier/test/test1.jpg', label_file='D:\MLOps\FMClassifier\labels.names', model_file='D:\MLOps\models\efficientnet_lite0_2021-10-23.onnx')
 
-
+print(type(label))
+print(type(acc))
 
 
 

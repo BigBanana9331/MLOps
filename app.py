@@ -21,6 +21,6 @@ async def home_page():
 
 @app.get("/predict")
 async def get_prediction():
-    label, acc = predict(image='D:\MLOps\FMClassifier\test\test1.jpg', label_file='D:\MLOps\FMClassifier\labels.names', model_file='D:\MLOps\models\efficientnet_lite0_2021-10-23.onnx')
+    label, acc = predict(image='D:\MLOps\FMClassifier/test/test1.jpg', label_file='D:\MLOps\FMClassifier\labels.names', model_file='D:\MLOps\models\efficientnet_lite0_2021-10-23.onnx')
     logger.info(dict(prediction=dict(label=label, prediction=acc)))
-    return label, acc
+    return "<h2>"+label+" "+str(acc)+" </h2>"
