@@ -42,6 +42,27 @@ def load_labels(filename):
   with open(filename, 'r') as f:
     return [line.strip() for line in f.readlines()]
 
+def main(image, label_file, model_file):
+    img = cv2.imread(image)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # pre-process the image like mobilenet and resize it to 300x300
+    img = pre_process_edgetpu(img, (224, 224, 3))
+    plt.axis('off')
+    plt.imshow(img)
+    plt.show()
+    img_batch = np.expand_dims(img, axis=0)
+    labels = load_labels(label_file)
+
+    sess = ort.InferenceSession(model_file)
+
+    results = sess.run(["Identity"], {"input_1": img_batch})
+    arr = results[0][0]
+    if (arr[0] > arr[1]):
+        print(labels[0])
+    else: 
+        print(labels[1])
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -70,29 +91,8 @@ if __name__ == '__main__':
     parser.add_argument(
         '--num_threads', default=None, type=int, help='number of threads')
     args = parser.parse_args()
-    img = cv2.imread(args.image)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    # pre-process the image like mobilenet and resize it to 300x300
-    img = pre_process_edgetpu(img, (224, 224, 3))
-    plt.axis('off')
-    plt.imshow(img)
-    plt.show()
-    img_batch = np.expand_dims(img, axis=0)
-    labels = load_labels(args.label_file)
-
-    sess = ort.InferenceSession(args.model_file)
-    # input_name = sess.get_outputs()[1].name
-    # print('Input Name:', input_name)
-    results = sess.run(["Identity"], {"input_1": img_batch})
-    arr = results[0][0]
-    if (arr[0]>arr[1]):
-        print(labels[0])
-    else: 
-        print(labels[1])
-    # result = reversed(results[0].argsort()[-5:])
-    # for r in result:
-    #     print(r, labels[str(r)], results[0][r])
+    
+    main(args.image, args.label_file, args.model_file)
     
 
 
