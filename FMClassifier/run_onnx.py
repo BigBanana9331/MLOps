@@ -14,7 +14,6 @@ def center_crop(img, out_height, out_width):
     img = img[top:bottom, left:right]
     return img
 
-
 def resize_with_aspectratio(img, out_height, out_width, scale=87.5, inter_pol=cv2.INTER_LINEAR):
     height, width, _ = img.shape
     new_height = int(100. * out_height / scale)
